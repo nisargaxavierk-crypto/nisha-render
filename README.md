@@ -9,7 +9,7 @@ A personal portfolio website built with HTML, CSS, and JavaScript. Connected to 
 ```
 Nisarga Xavier/
 ├── index.html                  ← Main portfolio page
-├── Nithu.jpeg                  ← Your profile photo
+├── Nisarga.jpeg                  ← Your profile photo
 ├── AWS.png                     ← AWS certification image
 ├── CSS3.png                    ← CSS3 certification image
 ├── Digital Engineering.png     ← Digital Engineering cert image
