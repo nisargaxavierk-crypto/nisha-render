@@ -1,4 +1,4 @@
-# Nithu Seervi T — Portfolio Website
+# Nisarga Xavier — Portfolio Website
 
 A personal portfolio website built with HTML, CSS, and JavaScript. Connected to Firebase Firestore for feedback submissions. Hosted on Render with manual CI/CD via GitHub Actions.
 
@@ -7,7 +7,7 @@ A personal portfolio website built with HTML, CSS, and JavaScript. Connected to 
 ## 📁 File Structure
 
 ```
-nithu-portfolio/
+Nisarga Xavier/
 ├── index.html                  ← Main portfolio page
 ├── Nithu.jpeg                  ← Your profile photo
 ├── AWS.png                     ← AWS certification image
