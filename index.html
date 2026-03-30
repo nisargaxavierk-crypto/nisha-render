@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nisarga Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  color:white;
+  background:#0f0c29;
+  overflow-x:hidden;
+}
+
+/* 🔥 Animated Background */
+body::before{
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background: radial-gradient(circle, #ff00cc, #333399, #00f2fe);
+  animation: moveBg 12s linear infinite;
+  z-index:-1;
+}
+@keyframes moveBg{
+  0%{transform:translate(0,0);}
+  50%{transform:translate(-30%, -30%);}
+  100%{transform:translate(0,0);}
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:15px;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:#ff00cc;}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero img{
+  width:300px;height:300px;
+  border-radius:50%;
+  border:5px solid #ff00cc;
+  box-shadow:0 0 30px #ff00cc;
+}
+.hero h1{margin-top:20px;font-size:2.5rem;}
+.hero p{opacity:0.8;}
+
+/* SECTION */
+section{padding:80px 10%;}
+
+/* ABOUT */
+.about p{
+  max-width:600px;
+  line-height:1.7;
+}
+
+/* SKILLS */
+.box{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.skill{
+  background:rgba(255,255,255,0.1);
+  padding:10px 20px;
+  border-radius:20px;
+}
+
+/* CERTIFICATIONS */
+.cert-container{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+}
+.cert{
+  width:220px;
+  background:rgba(255,255,255,0.08);
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+}
+.cert:hover{
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 0 15px #ff00cc;
+}
+.cert img{
+  width:100%;
+  border-radius:8px;
+}
+.cert h4{
+  margin-top:10px;
+  font-size:14px;
+}
+
+/* POPUP */
+.popup{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+.popup img{
+  max-width:80%;
+  border-radius:10px;
+}
+.popup span{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:35px;
+  cursor:pointer;
+}
+
+/* CONTACT */
+.contact{
+  display:flex;
+  gap:20px;
+  font-size:25px;
+}
+.contact a{color:white;}
+.contact a:hover{color:#ff00cc;}
+
+/* FEEDBACK FORM */
+.form-container{
+  max-width:500px;
+}
+form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+form input, form textarea{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:rgba(255,255,255,0.1);
+  color:white;
+}
+form button{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#ff00cc;
+  color:white;
+  cursor:pointer;
+}
+form button:hover{
+  background:#e600ac;
+}
+#successMsg{
+  margin-top:10px;
+  color:#00ffcc;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#cert">Certifications</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<img src="photo.jpeg">
+<h1>Nisarga Xavier</h1>
+<p>BCA Student | Web Developer</p>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+<h2>About Me</h2>
+<p>
+I am Nisarga Xavier a passionate BCA student at Kristu Jayanti College with strong interest in web development and cloud computing.
+I enjoy building modern and responsive websites using latest technologies.
+I have experience with GitHub, CI/CD pipelines, and Supabase backend.
+I am continuously learning and improving my technical skills.
+My goal is to become a professional developer.
+</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="box">
+<div class="skill">HTML</div>
+<div class="skill">CSS</div>
+<div class="skill">JavaScript</div>
+<div class="skill">Node.js</div>
+<div class="skill">Supabase</div>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="cert">
+<h2>Certifications</h2>
+<div class="cert-container">
+
+<div class="cert" onclick="openPopup(this)">
+<img src="cert1.jpg.jpeg">
+<h4>Git Hub</h4>
+</div>
+
+<div class="cert" onclick="openPopup(this)">
+<img src="cert2.jpg.jpeg">
+<h4>Java Script</h4>
+</div>
+
+<div class="cert" onclick="openPopup(this)">
+<img src="cert3.jpeg">
+<h4>HTML 5</h4>
+</div>
+
+<div class="cert" onclick="openPopup(this)">
+<img src="cert4.jpeg">
+<h4>Front End Web Development</h4>
+</div>
+
+</div>
+</section>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<span onclick="closePopup()">×</span>
+<img id="popupImg">
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Get In Touch</h2>
+<div class="contact">
+<a href="#"><i class="fab fa-github"></i></a>
+<a href="#"><i class="fas fa-envelope"></i></a>
+<a href="#"><i class="fab fa-linkedin"></i></a>
+</div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback">
+<div class="container card">
+<h2 class="section-title">Feedback</h2>
+
+<form class="feedback-form" id="feedbackForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
+<button type="submit">Submit Feedback</button>
+</form>
+
+<div class="feedback-status" id="status"></div>
+</div>
+</section>
+
+<footer style="text-align:center;padding:20px;color:var(--muted)">
+© 2026 
+</footer>
+
+<script>
+/* 🔗 SUPABASE CONFIG */
+const supabaseUrl = "https://bpfabzsflwjokmlswkge.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwZmFienNmbHdqb2ttbHN3a2dlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4ODY4NjQsImV4cCI6MjA5MDQ2Mjg2NH0.3kKHsFgP9iNBr5e9vVCQ2Rr4OuL8cBNHkKKC8oCzxAw";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+/* 📨 FEEDBACK SUBMIT */
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const status = document.getElementById("status");
+status.innerText = "Submitting...";
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+const { error } = await supabaseClient
+.from("feedbacks")
+.insert([{ name, email, message }]);
+
+if (error) {
+status.innerText = "❌ Error submitting feedback";
+status.style.color = "red";
+} else {
+status.innerText = "✅ Feedback submitted successfully!";
+status.style.color = "#00d4ff";
+e.target.reset();
+}});
+</script>
+
+</body>
+</html>
+
+<script>
+// POPUP
+function openPopup(el){
+  document.getElementById("popup").style.display="flex";
+  document.getElementById("popupImg").src = el.querySelector("img").src;
+}
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+document.getElementById("popup").addEventListener("click", function(e){
+  if(e.target.id==="popup") closePopup();
+});
+
+// FORM
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById("successMsg").innerText="✅ Message sent successfully!";
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
